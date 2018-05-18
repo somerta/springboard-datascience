@@ -23,5 +23,12 @@ refine %>%
 ##separate product code and number
   mutate(product_code = str_match(refine$'Product code / number', ".")) %>% 
   mutate(product_number = str_match(refine$'Product code / number', "[:digit:]*$")) %>% 
+  
+##add product category column
+  mutate(product_category = product_code) %>% 
+  mutate(product_category = str_replace(product_category, "p", "Smartphone")) %>% 
+  mutate(product_category = str_replace(product_category, "x", "Laptop")) %>% 
+  mutate(product_category = str_replace(product_category, "v", "TV")) %>% 
+  mutate(product_category = str_replace(product_category, "q", "Tablet")) %>% 
   print
        
