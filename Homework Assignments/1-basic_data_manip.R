@@ -30,5 +30,20 @@ refine %>%
   mutate(product_category = str_replace(product_category, "x", "Laptop")) %>% 
   mutate(product_category = str_replace(product_category, "v", "TV")) %>% 
   mutate(product_category = str_replace(product_category, "q", "Tablet")) %>% 
+  
+##create a column with full address
+#  mutate(full_address = paste(address, city, country, sep=', ')) %>% 
+  
+##create dummy variables for company
+  mutate(company_philips = ifelse(grepl("Philips", company), 1, 0)) %>% 
+  mutate(company_akzo = ifelse(grepl("Akzo", company), 1, 0)) %>% 
+  mutate(company_van_houten = ifelse(grepl("Van Houten", company), 1, 0)) %>% 
+  mutate(company_unilever = ifelse(grepl("Unilever", company), 1, 0)) %>% 
+
+##create dummy variables for product
+  mutate(product_smartphone = ifelse(grepl("p", product_code), 1, 0)) %>%
+  mutate(product_tv = ifelse(grepl("v", product_code), 1, 0)) %>%
+  mutate(product_laptop = ifelse(grepl("x", product_code), 1, 0)) %>%
+  mutate(product_tablet = ifelse(grepl("q", product_code), 1, 0)) %>%
   print
        
