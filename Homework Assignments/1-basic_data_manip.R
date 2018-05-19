@@ -2,7 +2,9 @@ library(readr)
 library(dplyr)
 library(stringr)
 
-refine <- read_csv("c:/users/shirtzel/documents/gits/springboard-datascience/Homework Assignments/refine_original.csv")
+setwd("c:/users/shirtzel/documents/gits/springboard-datascience/Homework Assignments")
+
+refine <- read_csv("refine_original.csv")
 View(refine)
 
 ##List all occurrences of each spelling of each brand name
@@ -44,6 +46,9 @@ refine %>%
   mutate(product_smartphone = ifelse(grepl("p", product_code), 1, 0)) %>%
   mutate(product_tv = ifelse(grepl("v", product_code), 1, 0)) %>%
   mutate(product_laptop = ifelse(grepl("x", product_code), 1, 0)) %>%
-  mutate(product_tablet = ifelse(grepl("q", product_code), 1, 0)) %>%
-  print
+  mutate(product_tablet = ifelse(grepl("q", product_code), 1, 0)) %>% 
+  as.data.frame
+
+##save to csv
+write.csv(refine, "refine_clean.csv")
        
