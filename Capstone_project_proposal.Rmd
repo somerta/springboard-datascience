@@ -8,38 +8,47 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-##THIS IS THE FIRST DRAFT
-## Requirements for proposal
 
 Finalize one Capstone idea based on the feedback you got from mentor(s) and peers on your Section 1 submission, and also based on your newly acquired understanding of the R ecosystem. Think of the following questions:
 
-* What is the problem you want to solve?
+##The problem to solve
+Identify likely candidates for membership acquisition and renewal for an arts organization.
 
-* Who is your client and why do they care about this problem? In other words, what will your client DO or DECIDE based on your analysis that they wouldn't have otherwise?
+##The client
+The arts organization I work for has a membership program. Memberships are purchased either online or at the Box Office and last for 1 year after purchase. Members receive discounted tickets to our programs -- films, music/dance/theater performances, gallery exhibibitions, and more -- as well as various other benefits. We have 5 tiers of membership ranging from "Pay What You Can" to $500 annual payments.
 
-* What data are you going to use for this? How will you acquire this data?
+The specific client for this problem is our Membership Department. That team wants to focus their approach so that instead of blanket-marketing every non-member for membership and every current-member for renewal, they know who are the most likely candidates to either buy a new membership or renew their current one so that they can spend their efforts more wisely on those customers. 
 
-* In brief, outline your approach to solving this problem (knowing that this might change later).
+One thing to know about the data going in, is that our membership has a very clear "leaky bucket" -- most first-year members tend not to renew for a second year. We also know that once a person renews for a second year, they are very likely to renew for a third, and the likelihood to renew goes up with each year of membership. So getting current first year members to renew is a major goal of our Membership team. 
 
-* What are your deliverables? Typically, this would include code, along with a paper and/or a slide deck.
+As a result of this study, the membership team will have a list of target customers that are more likely to respond to membership asks that they can cultivate more carefully for membership. 
 
-## R Markdown
+##The Data
+We have a CRM with data dating back to 10 years ago about our customers and their engagement with our organization. The information I will be using in this analysis all exists in the CRM, and includes:
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+* zip code  
+* email address domain  
+* organization-specific attributes that mark futher engagement with our org   
++ (e.g. Former Fellow, psychographic audience segment, etc.)  
+* ticket purchase history (genre, date, price, number of tickets)  
+* membership purchase history (date, level, price, number of years of membership)  
+* email engagement (open, click, unsubscribe)  
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+I have received permission to use this data from my organization, as long as I remove any personally-identifying information from the customers' data before extracting for use. I have Read-access to the SQL server where our CRM is hosted and will be conducting data pulls directly from the SQL tables.
 
-```{r cars}
-summary(cars)
-```
 
-## Including Plots
+##Approach
+I plan to approach this project using the following steps:    
 
-You can also embed plots, for example:
+* identify how far back in time I'd like to go / how much data I think I need  
+* pull the data using SQL  
+* possibly do some exploratory analysis on the raw data, looking for patterns  
+* run the data through one or more Supervised Machine Learning algorithms in two different ways:  
++ first: train the algorithm on data for current members then use that to identify non-members likely to join  
++ seecond: train the algorithm on data for current members that have renewed their memberships (aka this is not their first year of membership) then use that to identify current first-year members most likely to renew
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+##Deliverables
+* code in Rmarkdown (so it can be reproduced as needed!)
+* slidedeck briefly explaining the process
+* list of customers for Membership to pursue right away
 
